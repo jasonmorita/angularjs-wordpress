@@ -51,10 +51,10 @@ wp.controller('PostCtrl', function($scope, $location, Blog, $sce, $routeParams) 
 	$scope.addthisUrl = "http://jasonmorita.com/stuff/angular-wp/#post/" + $routeParams.id;
 
 	// make addthis title that gets passed into things like twitter
-	$scope.addthisTitle = "PDP Blog";
+	$scope.addthisTitle = "WP Blog";
 
 	// load addthis buttons 
-	jQuery.getScript("http://s7.addthis.com/js/300/addthis_widget.js#pubid=xa-528d36fa2484c95a", function(){
+	jQuery.getScript("http://s7.addthis.com/js/300/addthis_widget.js", function(){
 		addthis.toolbox('.addthis_toolbox');
 	});
 });
