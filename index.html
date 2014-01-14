@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ng wp</title>	
+    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+</head>
+<body>
+<div ng-app="wp">
+
+	<div ng-view></div>
+
+	<!-- these script tags replace normal .html file templates. -->
+	<script type="text/ng-template" id="/recent_posts.html">
+		<div>
+			<h1>Recent Posts</h1>
+
+			<div ng-controller="RecentPostsCtrl">
+				<span ng-bind="msg"></span>
+				<div ng-repeat="post in data.posts" class="recent-posts">
+					<h3><a ng-href="{{'#/post/'+post.id}}">{{post.title}}</a></h3>
+					<div ng-bind="post.date | mysqlDateFilter | date:'medium'"></div>
+					<div ng-bind-html-unsafe="post.excerpt"></div>
+					<a ng-href="{{'#/post/'+post.id}}">View post</a>
+				</div>
+				
+			</div>
+		<div>
+	</script>
+
+	<script type="text/ng-template" id="/post.html">
+		<div ng-controller="PostCtrl">
+			<span ng-bind="msg"></span>
+			<div ng-show="post">
+				<h1 ng-bind="post.title"></h1>
+				<div ng-bind="post.date | mysqlDateFilter | date:'medium'"></div>
+				<div ng-bind-html="post.content"></div>
+
+				<p>
+					<a href="{{'#/recent_posts'}}">Back to recent posts</a>
+
+					<div class="addthis_toolbox addthis_default_style " addthis:title="{{addthisTitle}}" addthis:url="{{addthisUrl}}">
+					<a class="addthis_button_preferred_1"></a>
+					<a class="addthis_button_preferred_2"></a>
+					<a class="addthis_button_preferred_3"></a>
+					<a class="addthis_button_preferred_4"></a>
+					<a class="addthis_button_compact"></a>
+					<a class="addthis_counter addthis_bubble_style"></a>
+					</div>
+				</p>
+			</div>
+		</div>
+	</script>
+
+</div>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-route.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-resource.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-sanitize.min.js"></script>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.3/js/bootstrap.min.js"></script>
+	<script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.9.0.js"></script>
+	<script src="js/app.js"></script>
+	<script src="js/controllers.js"></script>
+	<script src="js/services.js"></script>
+
+
+</body>
+</html>
